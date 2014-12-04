@@ -2,7 +2,7 @@ require 'socket'
 require 'digest'
 
 require './metaInfo.rb'
-
+#sdf
 class Client
   def initialize(ip = "127.0.0.1", port = 4919)
     @ipList = Array.new

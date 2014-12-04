@@ -1,7 +1,7 @@
 require 'socket'
 require 'digest'
 require './metaInfo.rb'
-
+#sdf
 class Server
   def initialize
     @ipList = Array.new
