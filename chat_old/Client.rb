@@ -3,7 +3,7 @@ require 'socket'
 class Client
   include Socket::Constants
   
-  def initialize(port = 2203, ip = 'localhost')
+  def initialize(port = 2204, ip = 'localhost')
     @ip = ip
     @port = port
   end
@@ -34,11 +34,10 @@ class Client
     begin
       peter = Array.new
       peter.push(userInput.length)
-      @socket.puts peter.pack("q")
       @socket.puts userInput
+      @socket.gets.chomp
     rescue Exception=>e
       puts "Error: " + e.to_s
-      puts @port.to_s + @ip.to_s
       exit
     end
   
@@ -49,4 +48,10 @@ class Client
   def terminateClient
     @socket.close
   end
+end
+
+if __FILE__ == $0
+  client = Client.new()
+  client.startClient()
+  client.getInput()  
 end

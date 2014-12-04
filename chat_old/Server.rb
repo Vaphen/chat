@@ -2,8 +2,7 @@ require 'socket'
 
 class Server
   include Socket::Constants
-   
-  def initialize(port = 2203, ip = 'localhost')
+  def initialize(port = 2204, ip = 'localhost')
     @port = port
     @ip = ip
   end
@@ -17,20 +16,27 @@ class Server
     client, client_addrinfo = @socket.accept
     begin
       while data = client.recvfrom(500)[0].chomp do
-        
-        print "John Anon: #{data} >>>> "
+
+     #   client.close if client.closed?
+
+        print "John Anon said: #{data}"
         if data.length > 499
           puts "Die empfangene Nachricht ist zu lang."
           puts "Bitten Sie Ihren Partner unter 500 Zeichen zu bleiben."
         end
-      
+
       end
+    rescue Interrupt
+      @socket.close
     end
-  rescue Interrupt
-    @socket.close
   end
 
   def terminateServer
     @socket.close
   end
+end
+
+if __FILE__ == $0
+  server = Server.new
+  server.startServer()
 end
