@@ -1,7 +1,12 @@
 require 'digest'
-#sdf
+
 module MetaInfo
   # client side
+  IP = "127.0.0.1"
+  PORT_SERVER = 50504
+  PORT_CLIENTS = 50505
+  
   HELLO_MSG = [1000].pack('q')
-  HELLO_MSG_HASH = Digest::MD5.new.update '1000'[0..3]
+  DISTURBED_MSG = [9000].pack('q')
+  DISCON_MSG = [3000].pack('q')
 end
